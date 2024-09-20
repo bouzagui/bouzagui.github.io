@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="icon" href="/static/images/logo.png">
+    <title>Sign In</title>
+</head>
+<body>
+    <div class="con">
+
+    <!-- Login Form -->
+    <form action="{{ url_for('login') }}" method="POST">  <!-- Form now submits to the login route -->
+	{{ form.hidden_tag() }}
+        <h2>Log In</h2>
+        <p>If you don't have an account, click <a href="/register">here</a></p>
+    
+        <div>
+            {{ form.email.label }}
+            {{ form.email(id="email", size=34, placeholder="Email") }}
+            {% if form.email.errors %}
+              <span style="color: red;">{{ form.email.errors[0] }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.password.label }}
+            {{ form.password(id="password", size=30, placeholder="Password") }}
+            {% if form.password.errors %}
+              <span style="color: red;">{{ form.password.errors[0] }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Render remember me checkbox with error handling -->
+        <label>
+            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        </label>
+    
+        <div class="clearfix">
+            <button id="forgot_password" type="button">Forgot Password</button>
+            <button id="login" type="submit">Login</button>
+        </div>
+    </form>
+    </div>
+</body>
+</html>
